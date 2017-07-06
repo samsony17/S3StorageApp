@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+    <title>File Cloud</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <script src="../static/js/jquery-1.11.2.js"></script>
+<script>
+    $(function() {
+    $('#fileupload').fileupload({
+        url: 'upload',
+        dataType: 'json',
+        add: function(e, data) {
+            data.submit();
+        },
+        success: function(response, status) {
+            console.log(response);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+})
+            </script>
+
+</head>
+
+<body>
+
+
+ <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="index.html">Upload File</a>
+                    </li>
+                    <li role="presentation"><a href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">File Storage</h3>
+        </div>
+
+
+
+            <!-- Form Name -->
+            <legend>Upload your Favorite file</legend>
+<form action="/Upload" class="col-6" method="POST" enctype="multipart/form-data" >
+<p><input type=file  name= fileupload></p>
+   <p> <input href = "/Upload" class="col-6 btn btn-primary" type=submit value =Upload></p>
+</form>
+
+
+<div class="list_files">
+        <h1>List Files</h1>
+        %s
+    </div>
+    <h1>Download File</h1>
+     <form name="FormFileDownload" action="/Download" class="col-6" method="POST" enctype="multipart/form-data">
+              <p><input type=text name="DownloadFile"></p>
+            <p><input  class="col-6 btn btn-lg btn-success" type = submit value = Download></p>
+            </form>
+
+    <h1>Delete File</h1>
+    <form name="FormFileDelete" action="/Delete" class="col-6" method="POST" enctype="multipart/form-data">
+              <p><input type=text name="DeleteFile" ></p>
+           <p> <input  class="col-6 btn btn-lg btn-success" type= submit name= Delete ></p>
+            </form>
+
+        <footer class="footer">
+            <p>&copy; Company 2015</p>
+        </footer>
+</div>
+
+</body>
+
+</html>
